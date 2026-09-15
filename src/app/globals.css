@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  --background: #07110f;
+  --foreground: #edf8f2;
+  --muted: #91aaa0;
+  --line: rgba(170, 224, 201, 0.14);
+  --panel: rgba(14, 33, 28, 0.72);
+  --accent: #baff69;
+  --mint: #73e3bd;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  background-image: radial-gradient(circle at 82% 8%, rgba(115, 227, 189, 0.12), transparent 27rem), linear-gradient(135deg, #07110f 0%, #0a1815 52%, #07110f 100%);
+}
+
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+.glass { background: var(--panel); border: 1px solid var(--line); box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22); backdrop-filter: blur(18px); }
+.grid-fade { background-image: linear-gradient(rgba(186, 255, 105, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(186, 255, 105, 0.035) 1px, transparent 1px); background-size: 52px 52px; }

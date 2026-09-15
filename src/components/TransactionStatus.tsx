@@ -1,0 +1,4 @@
+import { ExternalLink } from "lucide-react";
+import { explorerUrl } from "@/config/chain";
+
+export default function TransactionStatus({ hash, error, success }: { hash?: `0x${string}`; error?: string; success?: boolean }) { if (!hash && !error && !success) return null; return <div className={`mt-4 rounded-xl border p-4 text-sm ${error ? "border-red-300/20 bg-red-300/10 text-red-200" : success ? "border-[rgba(186,255,105,.2)] bg-[rgba(186,255,105,.08)] text-[var(--accent)]" : "border-white/10 bg-white/5 text-[var(--muted)]"}`}>{error ? error : success ? <><p>Transaction successful.</p>{hash && explorerUrl ? <a className="mt-2 inline-flex items-center gap-1 underline" href={`${explorerUrl}/tx/${hash}`} target="_blank" rel="noreferrer">View on Botchain Explorer <ExternalLink size={13} /></a> : hash ? <p className="mt-2 break-all text-xs">{hash}</p> : null}</> : <p>Transaction submitted. Waiting for confirmation...</p>}</div>; }
