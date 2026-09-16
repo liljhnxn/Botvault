@@ -19,9 +19,10 @@ export default function VaultDetail() {
   const vaultId = BigInt(id);
   const { address } = useAccount();
   const chainId = useChainId();
-  const { data: balance } = useBalance({ address });
+  const { data: balance } = useBalance({ address, chainId: botchainTestnet.id });
 
   const { data: vault, refetch } = useReadContract({
+    chainId: botchainTestnet.id,
     address: botVaultAddress,
     abi: botVaultAbi,
     functionName: "getVault",

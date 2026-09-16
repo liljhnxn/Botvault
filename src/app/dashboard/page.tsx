@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { Plus, RefreshCw } from "lucide-react";
-import { useAccount, useBalance, useReadContract, useReadContracts } from "wagmi";
+import { useAccount, useBalance, useChainId, useReadContract, useReadContracts, useSwitchChain } from "wagmi";
 import { formatEther } from "viem";
 import AppShell from "@/components/AppShell";
 import VaultCard from "@/components/VaultCard";
 import { botVaultAbi } from "@/contracts/abi/BotVault";
 import { botVaultAddress } from "@/contracts/addresses";
+import { botchainTestnet } from "@/config/chain";
 
 export type Vault = {
   vaultId: bigint;
@@ -20,13 +21,18 @@ export type Vault = {
 
 export default function Dashboard() {
   const { address, isConnected } = useAccount();
-  const { data: balance } = useBalance({ address });
+  const chainId = useChainId();
+  const { switchChain } = useSwitchChain();
+  const isWrongNetwork = isConnected && chainId !== botchainTestnet.id;
+
+  const { data: balance } = useBalance({ address, chainId: botchainTestnet.id });
 
   const {
     data: ids,
     isLoading: isIdsLoading,
     refetch: refetchIds,
   } = useReadContract({
+    chainId: botchainTestnet.id,
     address: botVaultAddress,
     abi: botVaultAbi,
     functionName: "getUserVaults",
@@ -35,6 +41,7 @@ export default function Dashboard() {
   });
 
   const vaultContracts = (ids ?? []).map((id) => ({
+    chainId: botchainTestnet.id,
     address: botVaultAddress,
     abi: botVaultAbi,
     functionName: "getVault" as const,
@@ -96,6 +103,23 @@ export default function Dashboard() {
             </Link>
           </div>
         </div>
+
+        {isWrongNetwork && (
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-amber-400/30 bg-amber-400/10 p-5 text-amber-200">
+            <div>
+              <p className="font-bold text-white">Wrong Network Detected</p>
+              <p className="mt-1 text-sm text-amber-200/80">
+                Your wallet is connected to a different network. Switch to Botchain Testnet (Chain ID 968) to see your vaults.
+              </p>
+            </div>
+            <button
+              onClick={() => switchChain({ chainId: botchainTestnet.id })}
+              className="rounded-full bg-amber-400 px-5 py-2.5 text-xs font-bold text-black transition hover:bg-amber-300"
+            >
+              Switch to Botchain Testnet
+            </button>
+          </div>
+        )}
 
         {!isConnected ? (
           <div className="glass mt-10 rounded-2xl p-10 text-center">
