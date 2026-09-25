@@ -16,8 +16,8 @@ export default function CreatePage() {
   const router = useRouter();
   const { address } = useAccount();
   const chainId = useChainId();
-  const { data: balance } = useBalance({ address });
-  const { writeContract, data: hash, error: writeError, isPending } = useWriteContract();
+  const { data: balance } = useBalance({ address, chainId: botchain.id });
+  const { writeContract, data: hash, error: writeError, isPending, reset: resetWrite } = useWriteContract();
   const {
     isLoading: confirming,
     isSuccess,
@@ -30,6 +30,10 @@ export default function CreatePage() {
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const [formError, setFormError] = useState("");
+
+  const balanceNumber = balance ? Number(formatEther(balance.value)) : 0;
+  const ESTIMATED_GAS_FEE = 0.005; // 206k gas * 20 Gwei = ~0.00414 BOT
+  const maxSafeDeposit = Math.max(0, balanceNumber - ESTIMATED_GAS_FEE);
 
   const minDateTime = useMemo(() => {
     const d = new Date(Date.now() + 5 * 60 * 1000);
@@ -62,6 +66,18 @@ export default function CreatePage() {
     if (chainId !== botchain.id) return setFormError("Please switch to Botchain Mainnet.");
     if (!botVaultAddress) return setFormError("Contract address is not configured.");
     if (!amount || Number(amount) <= 0) return setFormError("Deposit amount must be greater than zero.");
+
+    const parsedAmount = Number(amount);
+    if (balance) {
+      if (parsedAmount > balanceNumber) {
+        return setFormError(`Deposit exceeds your total wallet balance (${balanceNumber.toFixed(4)} BOT).`);
+      }
+      if (parsedAmount + ESTIMATED_GAS_FEE > balanceNumber) {
+        return setFormError(
+          `You need ~0.0042–0.005 BOT left in your wallet for network gas fees. The maximum safe deposit with your balance is ${maxSafeDeposit.toFixed(4)} BOT.`
+        );
+      }
+    }
 
     const unlock = Math.floor(new Date(date).getTime() / 1000);
     const now = Math.floor(Date.now() / 1000);
@@ -99,9 +115,26 @@ export default function CreatePage() {
             </p>
 
             <form onSubmit={submit} className="glass mt-10 rounded-2xl p-6">
-              <label className="text-sm font-semibold">
-                Deposit amount <span className="text-[var(--muted)]">/ BOT</span>
+              <div>
+                <div className="flex items-center justify-between text-sm font-semibold">
+                  <label htmlFor="deposit-amount-input">
+                    Deposit amount <span className="text-[var(--muted)]">/ BOT</span>
+                  </label>
+                  {balance && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setAmount(maxSafeDeposit > 0 ? maxSafeDeposit.toFixed(4) : "0");
+                        setFormError("");
+                      }}
+                      className="text-xs font-normal text-[var(--accent)] hover:underline"
+                    >
+                      Safe Max: {maxSafeDeposit.toFixed(4)} BOT
+                    </button>
+                  )}
+                </div>
                 <input
+                  id="deposit-amount-input"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                   type="number"
@@ -110,7 +143,10 @@ export default function CreatePage() {
                   placeholder="0.00"
                   className="mt-3 w-full rounded-xl border border-white/10 bg-black/20 px-4 py-4 text-2xl outline-none focus:border-[var(--accent)]"
                 />
-              </label>
+                <p className="mt-2 text-xs text-[var(--muted)]">
+                  Wallet balance: {balanceNumber.toFixed(4)} BOT (~0.005 BOT reserved for gas)
+                </p>
+              </div>
 
               <div className="mt-6">
                 <div className="flex items-center justify-between text-sm font-semibold">
@@ -187,6 +223,21 @@ export default function CreatePage() {
                   ? "Redirecting..."
                   : "Create vault"}
               </button>
+
+              {confirming && (
+                <div className="mt-3 text-center">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      resetWrite();
+                      setFormError("");
+                    }}
+                    className="text-xs text-[var(--muted)] hover:text-white underline"
+                  >
+                    Taking too long? Reset status & retry
+                  </button>
+                </div>
+              )}
 
               <TransactionStatus
                 hash={hash}

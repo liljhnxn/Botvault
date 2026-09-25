@@ -68,7 +68,9 @@ export default function TransactionStatus({
 
   return (
     <div className="mt-4 rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-[var(--muted)]">
-      <p>Transaction submitted. Waiting for confirmation...</p>
+      <div className="flex items-center justify-between">
+        <p className="font-medium text-white/90">Transaction submitted. Waiting for confirmation...</p>
+      </div>
       {hash && (
         <a
           className="mt-2 inline-flex items-center gap-1 text-xs text-[var(--accent)] underline"
@@ -79,6 +81,9 @@ export default function TransactionStatus({
           Track on Explorer <ExternalLink size={12} />
         </a>
       )}
+      <p className="mt-3 border-t border-white/10 pt-2 text-xs leading-5 text-[var(--muted)]">
+        Tip: If your transaction is taking long or not mining, open MetaMask &gt; <strong>Activity</strong> tab to check if the network rejected it due to insufficient gas fee reserve.
+      </p>
     </div>
   );
 }
