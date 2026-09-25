@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BotVault — Whitepaper & Pitch Deck</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0b0f19;
+      color: #e2e8f0;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 16px;
+      padding: 48px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .btn {
+      background: #10b981;
+      color: #000;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn:hover { background: #34d399; }
+    .back-link {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .back-link:hover { color: #fff; }
+    header {
+      border-bottom: 1px solid #1f2937;
+      padding-bottom: 24px;
+      margin-bottom: 36px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    h1 { font-size: 32px; color: #fff; margin-bottom: 8px; }
+    .subtitle { color: #94a3b8; font-size: 18px; margin-bottom: 16px; }
+    .meta { font-family: monospace; font-size: 12px; color: #64748b; }
+    .meta span { color: #cbd5e1; }
+    .section-title {
+      font-size: 20px;
+      color: #10b981;
+      border-bottom: 1px solid #1f2937;
+      padding-bottom: 8px;
+      margin: 36px 0 20px 0;
+    }
+    .slide-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .slide-card h3 {
+      font-size: 16px;
+      color: #f8fafc;
+      margin-bottom: 8px;
+    }
+    .slide-num {
+      color: #10b981;
+      font-size: 12px;
+      font-family: monospace;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    ul { margin-left: 20px; margin-top: 8px; }
+    li { margin-bottom: 6px; color: #cbd5e1; font-size: 14px; }
+    p { font-size: 14px; color: #cbd5e1; margin-bottom: 12px; }
+    code {
+      background: #1e293b;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-family: monospace;
+      color: #38bdf8;
+    }
+    footer {
+      border-top: 1px solid #1f2937;
+      margin-top: 40px;
+      padding-top: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    @media print {
+      body { background: #fff !important; color: #000 !important; padding: 0 !important; }
+      .container { background: #fff !important; border: none !important; box-shadow: none !important; padding: 0 !important; max-width: 100% !important; }
+      .actions { display: none !important; }
+      h1, h2, h3, strong { color: #000 !important; }
+      p, li { color: #222 !important; }
+      .slide-card { background: #f9f9f9 !important; border: 1px solid #ddd !important; }
+      code { background: #eee !important; color: #000 !important; }
+      header, .section-title, footer { border-color: #ddd !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="actions">
+      <a href="/" class="back-link">← Back to BotVault App</a>
+      <button onclick="window.print()" class="btn">🖨️ Save as PDF / Print</button>
+    </div>
+
+    <header>
+      <div class="badge">Official Protocol Documentation</div>
+      <h1>BotVault — Whitepaper & Pitch Deck</h1>
+      <div class="subtitle">Non-Custodial Time-Locked Savings & Capital Preservation Protocol on Botchain</div>
+      <div class="meta">
+        Network: <span>Botchain Testnet (Chain ID 968)</span> | Contract: <span>0x2bbe69cD810543FC2b819081172D74c66D44556C</span>
+      </div>
+    </header>
+
+    <h2 class="section-title">Part 1: Pitch Deck (10-Slide Overview)</h2>
+
+    <div class="slide-card">
+      <div class="slide-num">Slide 1</div>
+      <h3>Title & Tagline</h3>
+      <p><strong>BotVault: Lock Today. Unlock Tomorrow.</strong></p>
+      <p>Autonomous time-locked savings and forced financial discipline protocol built natively on Botchain.</p>
+    </div>
+
+    <div class="slide-card">
+      <div class="slide-num">Slide 2</div>
+      <h3>The Problem</h3>
+      <ul>
+        <li><strong>Impulse Selling:</strong> Crypto holders struggle with paper hands and emotional churn during market fluctuations.</li>
+        <li><strong>Custodial Counterparty Risk:</strong> Centralized locking introduces re-hypothecation and platform default risks.</li>
+        <li><strong>Lack of Dedicated Savings Primitives:</strong> Botchain requires fundamental DeFi building blocks that empower long-term token holding.</li>
+      </ul>
+    </div>
+
+    <div class="slide-card">
+      <div class="slide-num">Slide 3</div>
+      <h3>The Solution — BotVault</h3>
+      <ul>
+        <li><strong>Non-Custodial Time-Locks:</strong> Smart contracts deterministically lock native BOT tokens until a target on-chain timestamp.</li>
+        <li><strong>Immutable Security:</strong> Zero backdoors. Code is law—funds cannot be withdrawn prematurely by anyone.</li>
+        <li><strong>Top-Up Flexibility:</strong> Add additional native BOT to active vaults without postponing maturity dates.</li>
+      </ul>
+    </div>
+
+    <div class="slide-card">
+      <div class="slide-num">Slide 4</div>
+      <h3>Market Opportunity & Use Cases</h3>
+      <ul>
+        <li><strong>Personal Forced Savings:</strong> High-conviction investors holding native BOT through market cycles.</li>
+        <li><strong>Founder & Advisory Cliff Vesting:</strong> Autonomous cliff release schedules without expensive enterprise contracts.</li>
+        <li><strong>Community Loyalty Programs:</strong> Transparent proof of holding for ecosystem participants.</li>
+      </ul>
+    </div>
+
+    <div class="slide-card">
+      <div class="slide-num">Slide 5</div>
+      <h3>Core Product Features</h3>
+      <ul>
+        <li>One-click vault deployment with custom unlock timestamps.</li>
+        <li>Real-time dynamic countdown timers synced to on-chain block timestamps.</li>
+        <li>Comprehensive portfolio dashboard (Locked Value, Active Vaults, Completed Vaults).</li>
+        <li>Live on-chain event activity stream directly linked to Bohr Scan.</li>
+      </ul>
+    </div>
+
+    <div class="slide-card">
+      <div class="slide-num">Slide 6</div>
+      <h3>Security Architecture</h3>
+      <p>Built on Solidity 0.8.24 with OpenZeppelin ReentrancyGuard, Checks-Effects-Interactions (CEI) design pattern, and custom revert errors to maximize gas efficiency and guarantee zero vulnerability to reentrancy or state mismatch.</p>
+    </div>
+
+    <div class="slide-card">
+      <div class="slide-num">Slide 7</div>
+      <h3>Tokenomics & Ecosystem Impact</h3>
+      <p>BotVault creates an on-chain supply sink for native BOT. By absorbing circulating supply into deterministic time-locks, it lowers liquid velocity and stabilizes the token ecosystem.</p>
+    </div>
+
+    <div class="slide-card">
+      <div class="slide-num">Slide 8</div>
+      <h3>Technology Stack</h3>
+      <p>Solidity 0.8.24, OpenZeppelin v5, Hardhat, Next.js 16 (Turbopack), React 19, TypeScript, Tailwind CSS v4, Viem v2, Wagmi v3, Bohr RPC.</p>
+    </div>
+
+    <div class="slide-card">
+      <div class="slide-num">Slide 9</div>
+      <h3>Roadmap</h3>
+      <p><strong>Phase 1:</strong> Architecture & Testnet Launch (Completed) • <strong>Phase 2:</strong> Activity Stream & Metrics (Current) • <strong>Phase 3:</strong> BotNS (.bot) Domain Resolution & Multi-Token Vaults • <strong>Phase 4:</strong> Mainnet Audit & Deployment.</p>
+    </div>
+
+    <div class="slide-card">
+      <div class="slide-num">Slide 10</div>
+      <h3>Official Resources & Verification</h3>
+      <ul>
+        <li>Explorer: <code>https://scan.bohr.life/address/0x2bbe69cD810543FC2b819081172D74c66D44556C</code></li>
+        <li>GitHub: <code>https://github.com/liljhnxn/Botvault</code></li>
+        <li>Network RPC: <code>https://rpc.bohr.life</code></li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Part 2: Executive Whitepaper</h2>
+
+    <p><strong>1. Abstract:</strong> BotVault is an open-source, non-custodial decentralized application on the Botchain network that enables participants to securely lock native BOT tokens in a verified smart contract until an on-chain timestamp is reached. By establishing an immutable, autonomous savings mechanism, BotVault eliminates intermediary risks and curbs emotional market churn.</p>
+
+    <p><strong>2. Protocol Mechanics:</strong></p>
+    <ul>
+      <li><code>createVault(uint256 unlockTimestamp)</code>: Validates that the timestamp strictly exceeds current block time and accepts native BOT deposits.</li>
+      <li><code>depositToVault(uint256 vaultId)</code>: Enables vault owners to add funds prior to maturity without altering the unlock date.</li>
+      <li><code>withdraw(uint256 vaultId)</code>: Asserts <code>block.timestamp >= unlockTime</code> and transfers stored funds to the vault owner.</li>
+    </ul>
+
+    <p><strong>3. Smart Contract Verification:</strong> Deployed on Botchain Testnet at address <code>0x2bbe69cD810543FC2b819081172D74c66D44556C</code>.</p>
+
+    <footer>
+      BotVault © 2026 • Decentralized Savings Protocol on Botchain • All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>

@@ -56,7 +56,8 @@ async function verifyExplorer(endpoint: string, contractAddress: string) {
 }
 
 async function main() {
-  const contractAddress = "0x2bbe69cD810543FC2b819081172D74c66D44556C";
+  const contractAddress = process.env.NEXT_PUBLIC_BOTVAULT_CONTRACT_ADDRESS || "0x555e35a9dF9adFe84353e9FC018f46060Dcd8144";
+  console.log(`Verifying contract: ${contractAddress}`);
   await verifyExplorer("https://scan.botchain.ai/api", contractAddress);
 }
 
