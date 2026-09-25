@@ -9,7 +9,7 @@
 - **Tagline**: Lock Today. Unlock Tomorrow.
 - **Subtext**: Non-Custodial Time-Locked Savings & Capital Preservation Protocol on Botchain.
 - **Presenter**: BotVault Core Team
-- **Network**: Botchain Testnet (Chain ID: 968)
+- **Network**: Botchain Mainnet (Chain ID: 677)
 
 ### Slide 2: The Problem
 - **Impulsive Liquidity Drain**: Crypto holders struggle with impulse selling, premature liquidations, and weak savings discipline in volatile market cycles.
@@ -78,9 +78,9 @@ Decentralized financial ecosystems thrive when participants are incentivized to 
 - **Claim & Settlement**: Upon expiration of the lock period (`block.timestamp >= unlockTime`), the contract allows the vault creator to execute `withdraw(uint256 vaultId)`. The contract updates state flags before transferring the balance to thwart re-entrancy attacks.
 
 ### 3. Smart Contract Specifications
-- **Target Network**: Botchain Testnet
-- **Chain ID**: 968
-- **Core Contract Address**: `0x2bbe69cD810543FC2b819081172D74c66D44556C`
+- **Target Network**: Botchain Mainnet
+- **Chain ID**: 677
+- **Core Contract Address**: `0x555e35a9dF9adFe84353e9FC018f46060Dcd8144`
 - **Security Primitives**:
   - OpenZeppelin `ReentrancyGuard`
   - Strict ownership access checks

@@ -63,7 +63,7 @@ export default function VaultDetail() {
     setDepositFormError("");
 
     if (!address) return setDepositFormError("Connect your wallet first.");
-    if (chainId !== botchainTestnet.id) return setDepositFormError("Please switch to Botchain Testnet.");
+    if (chainId !== botchainTestnet.id) return setDepositFormError("Please switch to Botchain Mainnet.");
     if (!botVaultAddress) return setDepositFormError("Contract address not configured.");
     if (!depositAmount || Number(depositAmount) <= 0) return setDepositFormError("Please enter a valid deposit amount.");
 

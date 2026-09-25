@@ -46,9 +46,9 @@ export default function WhitepaperPage() {
             Non-Custodial Time-Locked Savings & Capital Preservation Protocol on Botchain.
           </p>
           <div className="mt-4 flex flex-wrap gap-4 text-xs font-mono text-slate-400 print:text-slate-600">
-            <span>Network: <strong>Botchain Testnet (Chain ID 968)</strong></span>
+            <span>Network: <strong>Botchain Mainnet (Chain ID 677)</strong></span>
             <span>•</span>
-            <span>Contract: <strong>0x2bbe69cD810543FC2b819081172D74c66D44556C</strong></span>
+            <span>Contract: <strong>0x555e35a9dF9adFe84353e9FC018f46060Dcd8144</strong></span>
           </div>
         </header>
 
@@ -195,7 +195,7 @@ export default function WhitepaperPage() {
             <div>
               <h3 className="text-xl font-bold text-white mb-2 print:text-black">3. Smart Contract Verification</h3>
               <p>
-                The BotVault contract is deployed to Botchain Testnet at address <code>0x2bbe69cD810543FC2b819081172D74c66D44556C</code> and utilizes OpenZeppelin security contracts. All code is public, audited in local unit tests, and verifiable on the Bohr Block Explorer.
+                The BotVault contract is deployed to Botchain Mainnet at address <code>0x555e35a9dF9adFe84353e9FC018f46060Dcd8144</code> and utilizes OpenZeppelin security contracts. All code is public, audited in local unit tests, and verifiable on the Botchain Block Explorer.
               </p>
             </div>
           </div>

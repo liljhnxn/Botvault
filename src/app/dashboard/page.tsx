@@ -109,14 +109,14 @@ export default function Dashboard() {
             <div>
               <p className="font-bold text-white">Wrong Network Detected</p>
               <p className="mt-1 text-sm text-amber-200/80">
-                Your wallet is connected to a different network. Switch to Botchain Testnet (Chain ID 968) to see your vaults.
+                Your wallet is connected to a different network. Switch to Botchain Mainnet (Chain ID 677) to see your vaults.
               </p>
             </div>
             <button
               onClick={() => switchChain({ chainId: botchainTestnet.id })}
               className="rounded-full bg-amber-400 px-5 py-2.5 text-xs font-bold text-black transition hover:bg-amber-300"
             >
-              Switch to Botchain Testnet
+              Switch to Botchain Mainnet
             </button>
           </div>
         )}

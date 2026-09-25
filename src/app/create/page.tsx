@@ -39,7 +39,7 @@ export default function CreatePage() {
     setFormError("");
 
     if (!address) return setFormError("Connect your wallet first.");
-    if (chainId !== botchainTestnet.id) return setFormError("Please switch to Botchain Testnet.");
+    if (chainId !== botchainTestnet.id) return setFormError("Please switch to Botchain Mainnet.");
     if (!botVaultAddress) return setFormError("Contract address is not configured.");
     if (!amount || Number(amount) <= 0) return setFormError("Deposit amount must be greater than zero.");
 

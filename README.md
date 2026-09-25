@@ -8,7 +8,7 @@
 
 ## 🌟 Overview
 
-**BotVault** is a non-custodial decentralized application deployed on **Botchain Testnet (Chain ID 968)** that allows users to lock native `BOT` tokens in a verified Solidity smart contract until a user-chosen future timestamp.
+**BotVault** is a non-custodial decentralized application deployed on **Botchain Mainnet (Chain ID 677)** that allows users to lock native `BOT` tokens in a verified Solidity smart contract until a user-chosen future timestamp.
 
 All deposit, vault creation, status inspection, additional deposits, and withdrawals execute via real on-chain smart contract transactions using **wagmi** and **viem**.
 
@@ -26,16 +26,16 @@ All deposit, vault creation, status inspection, additional deposits, and withdra
 
 ---
 
-## 🌐 Botchain Testnet Configuration
+## 🌐 Botchain Mainnet Configuration
 
 | Parameter | Value |
 | :--- | :--- |
-| **Network Name** | Botchain Testnet |
-| **Chain ID** | `968` |
+| **Network Name** | Botchain Mainnet |
+| **Chain ID** | `677` |
 | **Native Currency** | `BOT` (18 decimals) |
-| **RPC Endpoint** | `https://rpc.bohr.life` |
-| **Explorer** | `https://scan.bohr.life` |
-| **Deployed BotVault Contract** | `0x2bbe69cD810543FC2b819081172D74c66D44556C` |
+| **RPC Endpoint** | `https://rpc.botchain.ai` |
+| **Explorer** | `https://scan.botchain.ai` |
+| **Deployed BotVault Contract** | `0x555e35a9dF9adFe84353e9FC018f46060Dcd8144` |
 
 ---
 
@@ -94,13 +94,13 @@ Create `.env.local` based on `.env.example`:
 
 ```env
 # Frontend (Public)
-NEXT_PUBLIC_BOTCHAIN_CHAIN_ID=968
-NEXT_PUBLIC_BOTCHAIN_RPC_URL=https://rpc.bohr.life
-NEXT_PUBLIC_BOTCHAIN_EXPLORER_URL=
-NEXT_PUBLIC_BOTVAULT_CONTRACT_ADDRESS=0x...
+NEXT_PUBLIC_BOTCHAIN_CHAIN_ID=677
+NEXT_PUBLIC_BOTCHAIN_RPC_URL=https://rpc.botchain.ai
+NEXT_PUBLIC_BOTCHAIN_EXPLORER_URL=https://scan.botchain.ai
+NEXT_PUBLIC_BOTVAULT_CONTRACT_ADDRESS=0x555e35a9dF9adFe84353e9FC018f46060Dcd8144
 
 # Deployment Only (Keep private, never prefix with NEXT_PUBLIC_)
-BOTCHAIN_RPC_URL=https://rpc.bohr.life
+BOTCHAIN_RPC_URL=https://rpc.botchain.ai
 PRIVATE_KEY=your_private_key_here
 ```
 
