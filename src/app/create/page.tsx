@@ -53,15 +53,15 @@ export default function CreatePage() {
     setFormError("");
   };
 
-  // Redirect to dashboard upon successful vault creation
+  // Redirect to dashboard upon successful on-chain vault creation
   useEffect(() => {
-    if (isSuccess && !isReverted) {
+    if (Boolean(hash && isSuccess && !isReverted)) {
       const timer = setTimeout(() => {
         router.push("/dashboard");
       }, 1500);
       return () => clearTimeout(timer);
     }
-  }, [isSuccess, isReverted, router]);
+  }, [hash, isSuccess, isReverted, router]);
 
   const submit = (event: FormEvent) => {
     event.preventDefault();
