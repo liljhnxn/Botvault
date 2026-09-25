@@ -33,11 +33,13 @@ export default function VaultDetail() {
   const { writeContract: withdrawCall, data: withdrawHash, error: withdrawError, isPending: isWithdrawPending } = useWriteContract();
   const { isLoading: isWithdrawConfirming, isSuccess: isWithdrawSuccess } = useWaitForTransactionReceipt({
     hash: withdrawHash,
+    chainId: botchain.id,
   });
 
   const { writeContract: depositCall, data: depositHash, error: depositError, isPending: isDepositPending } = useWriteContract();
   const { isLoading: isDepositConfirming, isSuccess: isDepositSuccess } = useWaitForTransactionReceipt({
     hash: depositHash,
+    chainId: botchain.id,
   });
 
   const [depositModalOpen, setDepositModalOpen] = useState(false);

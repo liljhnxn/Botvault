@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft, CalendarClock, CheckCircle2, CircleHelp } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { formatEther, parseEther } from "viem";
 import { useAccount, useBalance, useChainId, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import AppShell from "@/components/AppShell";
@@ -17,22 +17,42 @@ export default function CreatePage() {
   const { address } = useAccount();
   const chainId = useChainId();
   const { data: balance } = useBalance({ address });
-  const { writeContract, data: hash, error, isPending } = useWriteContract();
-  const { isLoading: confirming, isSuccess } = useWaitForTransactionReceipt({ hash });
+  const { writeContract, data: hash, error: writeError, isPending } = useWriteContract();
+  const {
+    isLoading: confirming,
+    isSuccess,
+    data: receipt,
+    error: receiptError,
+  } = useWaitForTransactionReceipt({ hash, chainId: botchain.id });
+
+  const isReverted = receipt?.status === "reverted";
 
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const [formError, setFormError] = useState("");
 
+  const minDateTime = useMemo(() => {
+    const d = new Date(Date.now() + 5 * 60 * 1000);
+    const tzOffset = d.getTimezoneOffset() * 60000;
+    return new Date(d.getTime() - tzOffset).toISOString().slice(0, 16);
+  }, []);
+
+  const setPresetDate = (hours: number) => {
+    const d = new Date(Date.now() + hours * 3600 * 1000);
+    const tzOffset = d.getTimezoneOffset() * 60000;
+    setDate(new Date(d.getTime() - tzOffset).toISOString().slice(0, 16));
+    setFormError("");
+  };
+
   // Redirect to dashboard upon successful vault creation
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess && !isReverted) {
       const timer = setTimeout(() => {
         router.push("/dashboard");
       }, 1500);
       return () => clearTimeout(timer);
     }
-  }, [isSuccess, router]);
+  }, [isSuccess, isReverted, router]);
 
   const submit = (event: FormEvent) => {
     event.preventDefault();
@@ -44,8 +64,9 @@ export default function CreatePage() {
     if (!amount || Number(amount) <= 0) return setFormError("Deposit amount must be greater than zero.");
 
     const unlock = Math.floor(new Date(date).getTime() / 1000);
-    if (!date || !Number.isFinite(unlock) || unlock <= Math.floor(Date.now() / 1000)) {
-      return setFormError("Choose a future unlock date.");
+    const now = Math.floor(Date.now() / 1000);
+    if (!date || !Number.isFinite(unlock) || unlock <= now + 120) {
+      return setFormError("Unlock date must be at least 2 minutes in the future to allow for on-chain block mining.");
     }
 
     try {
@@ -91,19 +112,61 @@ export default function CreatePage() {
                 />
               </label>
 
-              <label className="mt-6 block text-sm font-semibold">
-                Unlock date
+              <div className="mt-6">
+                <div className="flex items-center justify-between text-sm font-semibold">
+                  <label htmlFor="unlock-date-input">Unlock date</label>
+                  <span className="text-xs text-[var(--muted)]">Min. 5 minutes in future</span>
+                </div>
                 <input
+                  id="unlock-date-input"
                   value={date}
+                  min={minDateTime}
                   onChange={(e) => setDate(e.target.value)}
                   type="datetime-local"
                   className="mt-3 w-full rounded-xl border border-white/10 bg-black/20 px-4 py-4 text-base outline-none focus:border-[var(--accent)]"
                 />
-              </label>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setPresetDate(1)}
+                    className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-[var(--muted)] hover:border-[var(--accent)] hover:text-white"
+                  >
+                    +1 Hour
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPresetDate(24)}
+                    className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-[var(--muted)] hover:border-[var(--accent)] hover:text-white"
+                  >
+                    +1 Day
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPresetDate(24 * 7)}
+                    className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-[var(--muted)] hover:border-[var(--accent)] hover:text-white"
+                  >
+                    +1 Week
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPresetDate(24 * 30)}
+                    className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-[var(--muted)] hover:border-[var(--accent)] hover:text-white"
+                  >
+                    +1 Month
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPresetDate(24 * 365)}
+                    className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-[var(--muted)] hover:border-[var(--accent)] hover:text-white"
+                  >
+                    +1 Year
+                  </button>
+                </div>
+              </div>
 
               {formError ? <p className="mt-4 text-sm text-red-200">{formError}</p> : null}
 
-              {isSuccess && (
+              {isSuccess && !isReverted && (
                 <div className="mt-4 flex items-center gap-2 text-sm text-[var(--accent)]">
                   <CheckCircle2 size={16} />
                   <span>Vault created! Redirecting to dashboard...</span>
@@ -111,19 +174,26 @@ export default function CreatePage() {
               )}
 
               <button
-                disabled={isPending || confirming || isSuccess}
+                disabled={isPending || confirming || (isSuccess && !isReverted)}
                 className="mt-7 w-full rounded-xl bg-[var(--accent)] px-5 py-4 font-bold text-[#0b1712] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isPending
-                  ? "Waiting for confirmation..."
+                  ? "Waiting for wallet..."
                   : confirming
                   ? "Confirming on-chain..."
+                  : isReverted
+                  ? "Reverted (Try with future date)"
                   : isSuccess
                   ? "Redirecting..."
                   : "Create vault"}
               </button>
 
-              <TransactionStatus hash={hash} error={error?.message} success={isSuccess} />
+              <TransactionStatus
+                hash={hash}
+                error={writeError?.message || receiptError?.message}
+                success={isSuccess && !isReverted}
+                reverted={isReverted}
+              />
             </form>
           </div>
 
