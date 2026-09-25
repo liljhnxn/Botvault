@@ -80,8 +80,21 @@ export default function ActivityPage() {
   return (
     <AppShell>
       <main className="mx-auto max-w-7xl px-5 pb-24 pt-12 lg:px-8">
-        <p className="text-xs uppercase tracking-[.2em] text-[var(--mint)]">On-chain timeline</p>
-        <h1 className="mt-3 text-4xl font-black">Activity</h1>
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-xs uppercase tracking-[.2em] text-[var(--mint)]">On-chain timeline</p>
+            <h1 className="mt-3 text-4xl font-black">Activity</h1>
+          </div>
+          <a
+            href={`${explorerUrl}/address/${botVaultAddress}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-4 py-2 text-xs font-semibold text-[var(--accent)] hover:bg-[var(--accent)]/20 transition"
+          >
+            <span>View Contract on Explorer</span>
+            <ArrowUpRight size={13} />
+          </a>
+        </div>
 
         {!address ? (
           <Empty text="Connect your wallet to watch live contract activity." />

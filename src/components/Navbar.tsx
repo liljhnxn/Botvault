@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, Menu, Vault, X } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Menu, Vault, X } from "lucide-react";
 import { useState } from "react";
 import WalletButton from "./WalletButton";
+import { explorerUrl } from "@/config/chain";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,18 +20,41 @@ export default function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-7 text-sm text-[var(--muted)] md:flex">
-          <Link href="/dashboard" className="hover:text-white">
+          <Link href="/dashboard" className="transition hover:text-white">
             Dashboard
           </Link>
-          <Link href="/activity" className="hover:text-white">
+          <Link href="/activity" className="transition hover:text-white">
             Activity
+          </Link>
+          <a
+            href={explorerUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 transition hover:text-white"
+          >
+            <span>Explorer</span>
+            <ExternalLink size={12} className="opacity-70" />
+          </a>
+          <Link href="/whitepaper" className="transition hover:text-white">
+            Whitepaper
           </Link>
           <Link href="/create" className="flex items-center gap-1 text-white hover:text-[var(--accent)]">
             Create <ArrowUpRight size={14} />
           </Link>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
+          <a
+            href={explorerUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Botchain Mainnet Explorer (Chain 677)"
+            className="hidden lg:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-[var(--muted)] hover:border-[var(--accent)]/30 hover:text-white transition"
+          >
+            <span className="size-2 rounded-full bg-[var(--accent)] shadow-[0_0_8px_var(--accent)]" />
+            <span>Mainnet 677</span>
+            <ArrowUpRight size={11} className="opacity-60" />
+          </a>
           <WalletButton />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -58,10 +82,27 @@ export default function Navbar() {
           >
             Activity
           </Link>
+          <a
+            href={explorerUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-1.5 text-[var(--muted)] hover:text-white"
+          >
+            <span>Botchain Explorer</span>
+            <ExternalLink size={13} />
+          </a>
+          <Link
+            href="/whitepaper"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-[var(--muted)] hover:text-white"
+          >
+            Whitepaper
+          </Link>
           <Link
             href="/create"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center gap-1 text-[var(--accent)] font-semibold"
+            className="flex items-center gap-1 font-semibold text-[var(--accent)]"
           >
             Create Vault <ArrowUpRight size={14} />
           </Link>
@@ -70,3 +111,4 @@ export default function Navbar() {
     </header>
   );
 }
+

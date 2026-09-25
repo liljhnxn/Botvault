@@ -33,9 +33,9 @@ All deposit, vault creation, status inspection, additional deposits, and withdra
 | **Network Name** | Botchain Mainnet |
 | **Chain ID** | `677` |
 | **Native Currency** | `BOT` (18 decimals) |
-| **RPC Endpoint** | `https://rpc.botchain.ai` |
-| **Explorer** | `https://scan.botchain.ai` |
-| **Deployed BotVault Contract** | `0x555e35a9dF9adFe84353e9FC018f46060Dcd8144` |
+| **RPC Endpoint** | [`https://rpc.botchain.ai`](https://rpc.botchain.ai) |
+| **Explorer** | [`https://scan.botchain.ai`](https://scan.botchain.ai) |
+| **Deployed BotVault Contract** | [`0x555e35a9dF9adFe84353e9FC018f46060Dcd8144`](https://scan.botchain.ai/address/0x555e35a9dF9adFe84353e9FC018f46060Dcd8144) |
 
 ---
 
@@ -141,6 +141,24 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 🚀 Vercel Deployment
+
+BotVault can be continuously deployed directly through Vercel:
+
+1. Import the repository `liljhnxn/Botvault` on [Vercel](https://vercel.com/new).
+2. Configure the following **Environment Variables** in the Vercel project settings:
+
+```env
+NEXT_PUBLIC_BOTCHAIN_CHAIN_ID=677
+NEXT_PUBLIC_BOTCHAIN_RPC_URL=https://rpc.botchain.ai
+NEXT_PUBLIC_BOTCHAIN_EXPLORER_URL=https://scan.botchain.ai
+NEXT_PUBLIC_BOTVAULT_CONTRACT_ADDRESS=0x555e35a9dF9adFe84353e9FC018f46060Dcd8144
+```
+
+3. Deploy! Every subsequent push to `main` will automatically build and deploy new production releases.
 
 ---
 

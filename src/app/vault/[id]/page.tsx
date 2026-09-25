@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, Coins, LockKeyhole, PlusCircle, X } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Coins, ExternalLink, LockKeyhole, PlusCircle, X } from "lucide-react";
 import { useParams } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { formatEther, parseEther } from "viem";
@@ -9,7 +9,7 @@ import { useAccount, useBalance, useChainId, useReadContract, useWaitForTransact
 import AppShell from "@/components/AppShell";
 import Countdown from "@/components/Countdown";
 import TransactionStatus from "@/components/TransactionStatus";
-import { botchain, BOTCHAIN_GAS_PRICE } from "@/config/chain";
+import { botchain, BOTCHAIN_GAS_PRICE, explorerUrl } from "@/config/chain";
 import { botVaultAbi } from "@/contracts/abi/BotVault";
 import { botVaultAddress } from "@/contracts/addresses";
 import { shortAddress } from "@/components/WalletButton";
@@ -158,8 +158,35 @@ export default function VaultDetail() {
             <span>Unlock {new Date(Number(vault.unlockTime) * 1000).toLocaleDateString()}</span>
           </div>
 
-          <div className="mt-10 grid gap-4 border-t border-white/10 pt-6 sm:grid-cols-2">
-            <Info label="Owner" value={shortAddress(vault.owner)} />
+          <div className="mt-10 grid gap-4 border-t border-white/10 pt-6 sm:grid-cols-3">
+            <Info
+              label="Owner"
+              value={
+                <a
+                  href={`${explorerUrl}/address/${vault.owner}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[var(--accent)] hover:underline"
+                >
+                  {shortAddress(vault.owner)}
+                  <ExternalLink size={12} />
+                </a>
+              }
+            />
+            <Info
+              label="Vault Contract"
+              value={
+                <a
+                  href={`${explorerUrl}/address/${botVaultAddress}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[var(--accent)] hover:underline"
+                >
+                  {shortAddress(botVaultAddress)}
+                  <ExternalLink size={12} />
+                </a>
+              }
+            />
             <Info label="Vault status" value={vault.withdrawn ? "Funds withdrawn" : unlocked ? "Unlocked" : "Locked"} />
           </div>
 
@@ -250,11 +277,11 @@ export default function VaultDetail() {
   );
 }
 
-function Info({ label, value }: { label: string; value: string }) {
+function Info({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div>
       <p className="text-xs text-[var(--muted)]">{label}</p>
-      <p className="mt-2 text-sm">{value}</p>
+      <div className="mt-2 text-sm">{value}</div>
     </div>
   );
 }

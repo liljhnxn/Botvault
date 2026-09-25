@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Plus, RefreshCw } from "lucide-react";
+import { ExternalLink, Plus, RefreshCw } from "lucide-react";
 import { useAccount, useBalance, useChainId, useReadContract, useReadContracts, useSwitchChain } from "wagmi";
 import { formatEther } from "viem";
 import AppShell from "@/components/AppShell";
 import VaultCard from "@/components/VaultCard";
 import { botVaultAbi } from "@/contracts/abi/BotVault";
 import { botVaultAddress } from "@/contracts/addresses";
-import { botchain } from "@/config/chain";
+import { botchain, explorerUrl } from "@/config/chain";
 
 export type Vault = {
   vaultId: bigint;
@@ -83,7 +83,18 @@ export default function Dashboard() {
       <main className="mx-auto max-w-7xl px-5 pb-24 pt-12 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-5">
           <div>
-            <p className="text-xs uppercase tracking-[.2em] text-[var(--mint)]">Your savings workspace</p>
+            <div className="flex items-center gap-3">
+              <p className="text-xs uppercase tracking-[.2em] text-[var(--mint)]">Your savings workspace</p>
+              <a
+                href={explorerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[11px] text-[var(--muted)] hover:border-[var(--accent)]/30 hover:text-white transition"
+              >
+                <span>Explorer</span>
+                <ExternalLink size={10} />
+              </a>
+            </div>
             <h1 className="mt-3 text-4xl font-black tracking-tight">Dashboard</h1>
           </div>
           <div className="flex gap-3">

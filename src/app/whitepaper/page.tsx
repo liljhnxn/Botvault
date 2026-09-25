@@ -154,9 +154,31 @@ export default function WhitepaperPage() {
             <div className="border border-slate-800/80 rounded-xl p-5 bg-slate-950/40 print:border-slate-200 print:bg-slate-50">
               <span className="text-xs font-mono text-emerald-400 font-semibold uppercase">Slide 10</span>
               <h3 className="text-lg font-bold text-white mt-1 mb-2 print:text-black">Official Resources & Verification</h3>
-              <ul className="list-disc list-inside space-y-1 text-sm text-slate-300 print:text-slate-800 font-mono text-xs">
-                <li>Explorer: https://scan.botchain.ai/address/0x555e35a9dF9adFe84353e9FC018f46060Dcd8144</li>
-                <li>GitHub: https://github.com/liljhnxn/Botvault</li>
+              <ul className="list-disc list-inside space-y-2 text-sm text-slate-300 print:text-slate-800 font-mono text-xs">
+                <li>
+                  Explorer:{" "}
+                  <a
+                    href="https://scan.botchain.ai/address/0x555e35a9dF9adFe84353e9FC018f46060Dcd8144"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-emerald-400 hover:underline inline-flex items-center gap-1"
+                  >
+                    https://scan.botchain.ai/address/0x555e35a9dF9adFe84353e9FC018f46060Dcd8144
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </li>
+                <li>
+                  GitHub:{" "}
+                  <a
+                    href="https://github.com/liljhnxn/Botvault"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-emerald-400 hover:underline inline-flex items-center gap-1"
+                  >
+                    https://github.com/liljhnxn/Botvault
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </li>
                 <li>Network RPC: https://rpc.botchain.ai</li>
               </ul>
             </div>
