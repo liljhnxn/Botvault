@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 
 async function main() {
-  const contractAddress = "0x2bbe69cD810543FC2b819081172D74c66D44556C";
+  const contractAddress = process.env.NEXT_PUBLIC_BOTVAULT_CONTRACT_ADDRESS || "0x555e35a9dF9adFe84353e9FC018f46060Dcd8144";
   const buildInfoFile = "solc-0_8_24-2d1fdd1d1a974306a78bb8f3a40d4d2ea704a5de.json";
   const buildInfoPath = path.join(process.cwd(), "artifacts", "build-info", buildInfoFile);
 

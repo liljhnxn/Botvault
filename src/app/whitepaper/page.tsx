@@ -110,7 +110,7 @@ export default function WhitepaperPage() {
                 <li>One-click vault deployment with custom unlock timestamps.</li>
                 <li>Real-time dynamic countdown timers synced to on-chain block timestamps.</li>
                 <li>Comprehensive portfolio dashboard (Locked Value, Active Vaults, Completed Vaults).</li>
-                <li>Live on-chain event activity stream directly linked to Bohr Scan.</li>
+                <li>Live on-chain event activity stream directly linked to Botchain Explorer.</li>
               </ul>
             </div>
 
@@ -137,7 +137,7 @@ export default function WhitepaperPage() {
               <span className="text-xs font-mono text-emerald-400 font-semibold uppercase">Slide 8</span>
               <h3 className="text-lg font-bold text-white mt-1 mb-2 print:text-black">Technology Stack</h3>
               <p className="text-sm text-slate-300 print:text-slate-800">
-                Solidity 0.8.24, OpenZeppelin v5, Hardhat, Next.js 16 (Turbopack), React 19, TypeScript, Tailwind CSS v4, Viem v2, Wagmi v3, Bohr RPC.
+                Solidity 0.8.24, OpenZeppelin v5, Hardhat, Next.js 16 (Turbopack), React 19, TypeScript, Tailwind CSS v4, Viem v2, Wagmi v3, Botchain RPC.
               </p>
             </div>
 
@@ -146,7 +146,7 @@ export default function WhitepaperPage() {
               <span className="text-xs font-mono text-emerald-400 font-semibold uppercase">Slide 9</span>
               <h3 className="text-lg font-bold text-white mt-1 mb-2 print:text-black">Roadmap</h3>
               <p className="text-sm text-slate-300 print:text-slate-800">
-                <strong>Phase 1:</strong> Architecture & Testnet Launch (Completed) • <strong>Phase 2:</strong> Activity Stream & Metrics (Current) • <strong>Phase 3:</strong> BotNS (.bot) Domain Resolution & Multi-Token Vaults • <strong>Phase 4:</strong> Mainnet Audit & Deployment.
+                <strong>Phase 1:</strong> Architecture & Protocol Engine (Completed) • <strong>Phase 2:</strong> Mainnet Deployment & Live Stream (Current) • <strong>Phase 3:</strong> BotNS (.bot) Domain Resolution & Multi-Token Vaults • <strong>Phase 4:</strong> Institutional Yield & Automated Stashing.
               </p>
             </div>
 
@@ -155,9 +155,9 @@ export default function WhitepaperPage() {
               <span className="text-xs font-mono text-emerald-400 font-semibold uppercase">Slide 10</span>
               <h3 className="text-lg font-bold text-white mt-1 mb-2 print:text-black">Official Resources & Verification</h3>
               <ul className="list-disc list-inside space-y-1 text-sm text-slate-300 print:text-slate-800 font-mono text-xs">
-                <li>Explorer: https://scan.bohr.life/address/0x2bbe69cD810543FC2b819081172D74c66D44556C</li>
+                <li>Explorer: https://scan.botchain.ai/address/0x555e35a9dF9adFe84353e9FC018f46060Dcd8144</li>
                 <li>GitHub: https://github.com/liljhnxn/Botvault</li>
-                <li>Network RPC: https://rpc.bohr.life</li>
+                <li>Network RPC: https://rpc.botchain.ai</li>
               </ul>
             </div>
           </div>

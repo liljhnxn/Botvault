@@ -1,11 +1,11 @@
 import * as fs from "fs";
 import * as path from "path";
 
-async function verifyOnBohr() {
-  const contractAddress = "0x2bbe69cD810543FC2b819081172D74c66D44556C";
+async function verifyOnBotchain() {
+  const contractAddress = process.env.NEXT_PUBLIC_BOTVAULT_CONTRACT_ADDRESS || "0x555e35a9dF9adFe84353e9FC018f46060Dcd8144";
   const sourceCode = fs.readFileSync(path.join(process.cwd(), "contracts", "BotVault_Flattened.sol"), "utf-8");
 
-  console.log("Sending verification request directly to https://scan.bohr.life/api...");
+  console.log("Sending verification request directly to https://scan.botchain.ai/api...");
 
   const params = new URLSearchParams();
   params.append("module", "contract");
@@ -20,14 +20,14 @@ async function verifyOnBohr() {
   params.append("evmversion", "shanghai");
   params.append("licenseType", "3");
 
-  const res = await fetch("https://scan.bohr.life/api", {
+  const res = await fetch("https://scan.botchain.ai/api", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: params.toString(),
   });
 
   const body = await res.text();
-  console.log("Response from scan.bohr.life:", body);
+  console.log("Response from scan.botchain.ai:", body);
 }
 
-verifyOnBohr().catch(console.error);
+verifyOnBotchain().catch(console.error);

@@ -9,7 +9,7 @@ import { useAccount, useBalance, useChainId, useReadContract, useWaitForTransact
 import AppShell from "@/components/AppShell";
 import Countdown from "@/components/Countdown";
 import TransactionStatus from "@/components/TransactionStatus";
-import { botchainTestnet } from "@/config/chain";
+import { botchain } from "@/config/chain";
 import { botVaultAbi } from "@/contracts/abi/BotVault";
 import { botVaultAddress } from "@/contracts/addresses";
 import { shortAddress } from "@/components/WalletButton";
@@ -19,10 +19,10 @@ export default function VaultDetail() {
   const vaultId = BigInt(id);
   const { address } = useAccount();
   const chainId = useChainId();
-  const { data: balance } = useBalance({ address, chainId: botchainTestnet.id });
+  const { data: balance } = useBalance({ address, chainId: botchain.id });
 
   const { data: vault, refetch } = useReadContract({
-    chainId: botchainTestnet.id,
+    chainId: botchain.id,
     address: botVaultAddress,
     abi: botVaultAbi,
     functionName: "getVault",
@@ -63,7 +63,7 @@ export default function VaultDetail() {
     setDepositFormError("");
 
     if (!address) return setDepositFormError("Connect your wallet first.");
-    if (chainId !== botchainTestnet.id) return setDepositFormError("Please switch to Botchain Mainnet.");
+    if (chainId !== botchain.id) return setDepositFormError("Please switch to Botchain Mainnet.");
     if (!botVaultAddress) return setDepositFormError("Contract address not configured.");
     if (!depositAmount || Number(depositAmount) <= 0) return setDepositFormError("Please enter a valid deposit amount.");
 

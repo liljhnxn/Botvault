@@ -8,7 +8,7 @@ import AppShell from "@/components/AppShell";
 import VaultCard from "@/components/VaultCard";
 import { botVaultAbi } from "@/contracts/abi/BotVault";
 import { botVaultAddress } from "@/contracts/addresses";
-import { botchainTestnet } from "@/config/chain";
+import { botchain } from "@/config/chain";
 
 export type Vault = {
   vaultId: bigint;
@@ -23,16 +23,16 @@ export default function Dashboard() {
   const { address, isConnected } = useAccount();
   const chainId = useChainId();
   const { switchChain } = useSwitchChain();
-  const isWrongNetwork = isConnected && chainId !== botchainTestnet.id;
+  const isWrongNetwork = isConnected && chainId !== botchain.id;
 
-  const { data: balance } = useBalance({ address, chainId: botchainTestnet.id });
+  const { data: balance } = useBalance({ address, chainId: botchain.id });
 
   const {
     data: ids,
     isLoading: isIdsLoading,
     refetch: refetchIds,
   } = useReadContract({
-    chainId: botchainTestnet.id,
+    chainId: botchain.id,
     address: botVaultAddress,
     abi: botVaultAbi,
     functionName: "getUserVaults",
@@ -41,7 +41,7 @@ export default function Dashboard() {
   });
 
   const vaultContracts = (ids ?? []).map((id) => ({
-    chainId: botchainTestnet.id,
+    chainId: botchain.id,
     address: botVaultAddress,
     abi: botVaultAbi,
     functionName: "getVault" as const,
@@ -113,7 +113,7 @@ export default function Dashboard() {
               </p>
             </div>
             <button
-              onClick={() => switchChain({ chainId: botchainTestnet.id })}
+              onClick={() => switchChain({ chainId: botchain.id })}
               className="rounded-full bg-amber-400 px-5 py-2.5 text-xs font-bold text-black transition hover:bg-amber-300"
             >
               Switch to Botchain Mainnet

@@ -2,7 +2,7 @@
 
 **Lock Today. Unlock Tomorrow.**
 
-> A decentralized time-locked savings vault built on **Botchain Testnet**.
+> A decentralized time-locked savings vault built on **Botchain Mainnet**.
 
 ---
 
@@ -74,7 +74,7 @@ botvault/
 │   │   ├── TransactionStatus.tsx  # Dynamic transaction confirmation banner
 │   │   └── AppShell.tsx           # Layout wrapper
 │   ├── config/
-│   │   ├── chain.ts               # Botchain Testnet viem chain definition
+│   │   ├── chain.ts               # Botchain Mainnet viem chain definition
 │   │   └── providers.tsx          # Wagmi & React Query provider wrapper
 │   └── contracts/
 │       ├── abi/
@@ -126,7 +126,7 @@ npm run test:contracts
 npm run compile
 ```
 
-### 4. Deploy to Botchain Testnet
+### 4. Deploy to Botchain Mainnet
 
 ```bash
 npm run deploy

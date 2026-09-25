@@ -8,7 +8,7 @@ import { formatEther, parseEther } from "viem";
 import { useAccount, useBalance, useChainId, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import AppShell from "@/components/AppShell";
 import TransactionStatus from "@/components/TransactionStatus";
-import { botchainTestnet } from "@/config/chain";
+import { botchain } from "@/config/chain";
 import { botVaultAbi } from "@/contracts/abi/BotVault";
 import { botVaultAddress } from "@/contracts/addresses";
 
@@ -39,7 +39,7 @@ export default function CreatePage() {
     setFormError("");
 
     if (!address) return setFormError("Connect your wallet first.");
-    if (chainId !== botchainTestnet.id) return setFormError("Please switch to Botchain Mainnet.");
+    if (chainId !== botchain.id) return setFormError("Please switch to Botchain Mainnet.");
     if (!botVaultAddress) return setFormError("Contract address is not configured.");
     if (!amount || Number(amount) <= 0) return setFormError("Deposit amount must be greater than zero.");
 

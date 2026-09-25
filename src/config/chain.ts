@@ -8,6 +8,4 @@ export const botchain = defineChain({
   blockExplorers: { default: { name: "Botchain Explorer", url: process.env.NEXT_PUBLIC_BOTCHAIN_EXPLORER_URL ?? "https://scan.botchain.ai" } },
 });
 
-export const botchainTestnet = botchain;
-
 export const explorerUrl = process.env.NEXT_PUBLIC_BOTCHAIN_EXPLORER_URL ?? "https://scan.botchain.ai";

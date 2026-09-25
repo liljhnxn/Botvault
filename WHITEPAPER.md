@@ -31,14 +31,14 @@
 - **Time-Locked Vault Creation**: Set target unlock date and initial deposit in one seamless transaction.
 - **Top-Up Capability**: Boost active vault balances without resetting unlock deadlines.
 - **Real-Time On-Chain Dashboard**: Live portfolio tracking (Total Locked, Active Vaults, Completed Vaults).
-- **Activity & Explorer Timeline**: Real-time event indexing with direct links to the Bohr Explorer.
+- **Activity & Explorer Timeline**: Real-time event indexing with direct links to the Botchain Explorer.
 - **BotNS Compatibility**: Designed for future human-readable address resolution (e.g. `alice.bot`).
 
 ### Slide 6: Security & Architecture
 - **Solidity ^0.8.24**: Battle-tested EVM smart contract logic.
 - **OpenZeppelin Security**: Built with `ReentrancyGuard` and Checks-Effects-Interactions pattern.
 - **Protection Measures**: Custom revert errors, zero-deposit protection, and double-claim prevention.
-- **Fully Verified**: Contract deployed and verified on Botchain Testnet (`0x2bbe69cD810543FC2b819081172D74c66D44556C`).
+- **Fully Verified**: Contract deployed and verified on Botchain Mainnet (`0x555e35a9dF9adFe84353e9FC018f46060Dcd8144`).
 
 ### Slide 7: Tokenomics & Economy (BOT Utility)
 - **Direct Native Asset Integration**: Locks native `BOT` directly, removing synthetic or wrapped token risks.
@@ -48,17 +48,17 @@
 ### Slide 8: Technology Stack
 - **Smart Contracts**: Solidity, Hardhat, OpenZeppelin, Viem.
 - **Frontend / DApp**: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS, Wagmi v3.
-- **Infrastructure**: Botchain Testnet RPC (`https://rpc.bohr.life`), Bohr Scan Explorer.
+- **Infrastructure**: Botchain Mainnet RPC (`https://rpc.botchain.ai`), Botchain Scan Explorer (`https://scan.botchain.ai`).
 
 ### Slide 9: Roadmap
-- **Phase 1 (Completed)**: Core smart contract architecture, Hardhat test suite, Botchain Testnet deployment, and web DApp launch.
-- **Phase 2 (Current)**: Community testnet onboarding, UI analytics enhancement, activity event stream.
+- **Phase 1 (Completed)**: Core smart contract architecture, Hardhat test suite, Botchain Mainnet deployment, and web DApp launch.
+- **Phase 2 (Current)**: Mainnet onboarding, real-time activity stream, and UI analytics.
 - **Phase 3 (Upcoming)**: BotNS (`.bot`) domain resolution, multi-token/ERC-20 support, recurring time-deposit plans.
-- **Phase 4**: Security audits and Mainnet deployment.
+- **Phase 4**: Institutional yield integrations and automated stashing.
 
 ### Slide 10: Call to Action & Links
-- **DApp Website**: [Localhost / Hosted Link]
-- **Explorer**: `https://scan.bohr.life/address/0x2bbe69cD810543FC2b819081172D74c66D44556C`
+- **DApp Website**: https://botvault-nu.vercel.app
+- **Explorer**: `https://scan.botchain.ai/address/0x555e35a9dF9adFe84353e9FC018f46060Dcd8144`
 - **GitHub**: `https://github.com/liljhnxn/Botvault`
 - **Contact**: Core Team / Telegram / X
 
