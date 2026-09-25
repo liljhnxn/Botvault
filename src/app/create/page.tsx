@@ -8,7 +8,7 @@ import { formatEther, parseEther } from "viem";
 import { useAccount, useBalance, useChainId, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import AppShell from "@/components/AppShell";
 import TransactionStatus from "@/components/TransactionStatus";
-import { botchain } from "@/config/chain";
+import { botchain, BOTCHAIN_GAS_PRICE } from "@/config/chain";
 import { botVaultAbi } from "@/contracts/abi/BotVault";
 import { botVaultAddress } from "@/contracts/addresses";
 
@@ -23,7 +23,12 @@ export default function CreatePage() {
     isSuccess,
     data: receipt,
     error: receiptError,
-  } = useWaitForTransactionReceipt({ hash, chainId: botchain.id });
+  } = useWaitForTransactionReceipt({
+    hash,
+    chainId: botchain.id,
+    pollingInterval: 2_000,
+    timeout: 60_000,
+  });
 
   const isReverted = receipt?.status === "reverted";
 
@@ -92,6 +97,8 @@ export default function CreatePage() {
         functionName: "createVault",
         args: [BigInt(unlock)],
         value: parseEther(amount),
+        gasPrice: BOTCHAIN_GAS_PRICE,
+        gas: 260000n,
       });
     } catch (err) {
       setFormError(err instanceof Error ? err.message : "Transaction could not be prepared.");

@@ -9,7 +9,7 @@ import { useAccount, useBalance, useChainId, useReadContract, useWaitForTransact
 import AppShell from "@/components/AppShell";
 import Countdown from "@/components/Countdown";
 import TransactionStatus from "@/components/TransactionStatus";
-import { botchain } from "@/config/chain";
+import { botchain, BOTCHAIN_GAS_PRICE } from "@/config/chain";
 import { botVaultAbi } from "@/contracts/abi/BotVault";
 import { botVaultAddress } from "@/contracts/addresses";
 import { shortAddress } from "@/components/WalletButton";
@@ -34,12 +34,16 @@ export default function VaultDetail() {
   const { isLoading: isWithdrawConfirming, isSuccess: isWithdrawSuccess } = useWaitForTransactionReceipt({
     hash: withdrawHash,
     chainId: botchain.id,
+    pollingInterval: 2_000,
+    timeout: 60_000,
   });
 
   const { writeContract: depositCall, data: depositHash, error: depositError, isPending: isDepositPending } = useWriteContract();
   const { isLoading: isDepositConfirming, isSuccess: isDepositSuccess } = useWaitForTransactionReceipt({
     hash: depositHash,
     chainId: botchain.id,
+    pollingInterval: 2_000,
+    timeout: 60_000,
   });
 
   const [depositModalOpen, setDepositModalOpen] = useState(false);
@@ -77,6 +81,8 @@ export default function VaultDetail() {
           functionName: "deposit",
           args: [vaultId],
           value: parseEther(depositAmount),
+          gasPrice: BOTCHAIN_GAS_PRICE,
+          gas: 200000n,
         },
         {
           onSuccess: () => {
@@ -98,6 +104,8 @@ export default function VaultDetail() {
         abi: botVaultAbi,
         functionName: "withdraw",
         args: [vaultId],
+        gasPrice: BOTCHAIN_GAS_PRICE,
+        gas: 200000n,
       },
       {
         onSuccess: () => {
