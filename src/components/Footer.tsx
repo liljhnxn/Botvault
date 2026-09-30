@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, ExternalLink, ShieldCheck, Vault } from "lucide-react";
-import { explorerUrl } from "@/config/chain";
+import { explorerUrl, botchainWebsiteUrl } from "@/config/chain";
 import { botVaultAddress } from "@/contracts/addresses";
 
 function formatAddress(address?: string) {
@@ -24,10 +24,16 @@ export default function Footer() {
             <p className="text-xs leading-relaxed text-[var(--muted)]">
               Decentralized, non-custodial time-locked savings protocol deployed on Botchain Mainnet.
             </p>
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-400">
+            <a
+              href={botchainWebsiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-400 hover:border-emerald-500/40 hover:bg-emerald-500/20 transition"
+            >
               <span className="size-2 rounded-full bg-[var(--accent)] shadow-[0_0_10px_var(--accent)]" />
-              Botchain Mainnet (Chain 677)
-            </div>
+              <span>BOT Chain Mainnet (botchain.ai)</span>
+              <ExternalLink size={11} className="opacity-70" />
+            </a>
           </div>
 
           {/* Protocol Links */}
@@ -59,16 +65,27 @@ export default function Footer() {
 
           {/* Blockchain & Explorer */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--mint)]">Explorer & Network</p>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--mint)]">BOT Chain & Network</p>
             <ul className="mt-4 space-y-2.5 text-xs text-[var(--muted)]">
+              <li>
+                <a
+                  href={botchainWebsiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-[var(--accent)] hover:underline font-semibold"
+                >
+                  <span>BOT Chain: botchain.ai</span>
+                  <ExternalLink size={12} />
+                </a>
+              </li>
               <li>
                 <a
                   href={explorerUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-[var(--accent)] hover:underline"
+                  className="flex items-center gap-1.5 hover:text-white transition"
                 >
-                  <span>Botchain Mainnet Explorer</span>
+                  <span>Botchain Explorer: scan.botchain.ai</span>
                   <ExternalLink size={12} />
                 </a>
               </li>
@@ -122,15 +139,27 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-[var(--muted)]">
           <p>© {new Date().getFullYear()} BotVault Protocol. All smart contract actions are immutable and verifiable on-chain.</p>
-          <a
-            href={explorerUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1 hover:text-white transition"
-          >
-            <span>scan.botchain.ai</span>
-            <ExternalLink size={11} />
-          </a>
+          <div className="flex items-center gap-4">
+            <a
+              href={botchainWebsiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-[var(--accent)] hover:underline transition font-medium"
+            >
+              <span>botchain.ai</span>
+              <ExternalLink size={11} />
+            </a>
+            <span className="text-white/20">•</span>
+            <a
+              href={explorerUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 hover:text-white transition"
+            >
+              <span>scan.botchain.ai</span>
+              <ExternalLink size={11} />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

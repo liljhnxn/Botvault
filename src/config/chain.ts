@@ -21,5 +21,6 @@ export const botchain = defineChain({
 });
 
 export const explorerUrl = cleanExplorerUrl;
+export const botchainWebsiteUrl = "https://botchain.ai";
 
 

@@ -57,6 +57,7 @@
 - **Phase 4**: Institutional yield integrations and automated stashing.
 
 ### Slide 10: Call to Action & Links
+- **BOT Chain Official Website**: [`https://botchain.ai`](https://botchain.ai)
 - **DApp Website**: https://botvault-nu.vercel.app
 - **Explorer**: `https://scan.botchain.ai/address/0x555e35a9dF9adFe84353e9FC018f46060Dcd8144`
 - **GitHub**: `https://github.com/liljhnxn/Botvault`

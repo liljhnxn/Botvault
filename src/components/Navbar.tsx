@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight, ExternalLink, Menu, Vault, X } from "lucide-react";
 import { useState } from "react";
 import WalletButton from "./WalletButton";
-import { explorerUrl } from "@/config/chain";
+import { explorerUrl, botchainWebsiteUrl } from "@/config/chain";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -27,6 +27,15 @@ export default function Navbar() {
             Activity
           </Link>
           <a
+            href={botchainWebsiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 transition hover:text-white"
+          >
+            <span>BOT Chain</span>
+            <ExternalLink size={12} className="opacity-70" />
+          </a>
+          <a
             href={explorerUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -45,15 +54,15 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <a
-            href={explorerUrl}
+            href={botchainWebsiteUrl}
             target="_blank"
             rel="noopener noreferrer"
-            title="Botchain Mainnet Explorer (Chain 677)"
-            className="hidden lg:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-[var(--muted)] hover:border-[var(--accent)]/30 hover:text-white transition"
+            title="BOT Chain Official Website (botchain.ai)"
+            className="hidden lg:flex items-center gap-2 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-3 py-1.5 text-xs text-[var(--accent)] hover:bg-[var(--accent)]/20 hover:text-white transition"
           >
             <span className="size-2 rounded-full bg-[var(--accent)] shadow-[0_0_8px_var(--accent)]" />
-            <span>Mainnet 677</span>
-            <ArrowUpRight size={11} className="opacity-60" />
+            <span>BOT Chain</span>
+            <ExternalLink size={11} className="opacity-70" />
           </a>
           <WalletButton />
           <button
@@ -83,13 +92,23 @@ export default function Navbar() {
             Activity
           </Link>
           <a
+            href={botchainWebsiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-1.5 text-[var(--muted)] hover:text-white"
+          >
+            <span>BOT Chain (botchain.ai)</span>
+            <ExternalLink size={13} />
+          </a>
+          <a
             href={explorerUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMobileMenuOpen(false)}
             className="flex items-center gap-1.5 text-[var(--muted)] hover:text-white"
           >
-            <span>Botchain Explorer</span>
+            <span>Botchain Explorer (scan.botchain.ai)</span>
             <ExternalLink size={13} />
           </a>
           <Link

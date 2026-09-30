@@ -31,6 +31,7 @@ All deposit, vault creation, status inspection, additional deposits, and withdra
 | Parameter | Value |
 | :--- | :--- |
 | **Network Name** | Botchain Mainnet |
+| **Official Website** | [`https://botchain.ai`](https://botchain.ai) |
 | **Chain ID** | `677` |
 | **Native Currency** | `BOT` (18 decimals) |
 | **RPC Endpoint** | [`https://rpc.botchain.ai`](https://rpc.botchain.ai) |

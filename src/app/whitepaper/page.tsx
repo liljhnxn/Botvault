@@ -156,6 +156,18 @@ export default function WhitepaperPage() {
               <h3 className="text-lg font-bold text-white mt-1 mb-2 print:text-black">Official Resources & Verification</h3>
               <ul className="list-disc list-inside space-y-2 text-sm text-slate-300 print:text-slate-800 font-mono text-xs">
                 <li>
+                  Official Website:{" "}
+                  <a
+                    href="https://botchain.ai"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-emerald-400 hover:underline inline-flex items-center gap-1 font-semibold"
+                  >
+                    https://botchain.ai
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </li>
+                <li>
                   Explorer:{" "}
                   <a
                     href="https://scan.botchain.ai/address/0x555e35a9dF9adFe84353e9FC018f46060Dcd8144"

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Check, CircleDollarSign, ExternalLink, LockKeyhole, ShieldCheck, Sparkles } from "lucide-react";
 import AppShell from "@/components/AppShell";
-import { explorerUrl } from "@/config/chain";
+import { explorerUrl, botchainWebsiteUrl } from "@/config/chain";
 import { botVaultAddress } from "@/contracts/addresses";
 
 const benefits = [
@@ -19,10 +19,16 @@ export default function Home() {
         <section className="mx-auto grid max-w-7xl gap-14 px-5 pb-24 pt-20 lg:grid-cols-[1.15fr_.85fr] lg:px-8 lg:pb-32 lg:pt-28">
           <div className="max-w-3xl">
             <div className="mb-6 flex flex-wrap items-center gap-3">
-              <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[var(--mint)]">
+              <a
+                href={botchainWebsiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[var(--mint)] hover:text-white transition"
+              >
                 <span className="size-2 rounded-full bg-[var(--accent)] shadow-[0_0_16px_var(--accent)]" />
-                Botchain Mainnet
-              </span>
+                BOT Chain (botchain.ai)
+                <ExternalLink size={11} className="opacity-70" />
+              </a>
               <span className="text-white/20">•</span>
               <a
                 href={explorerUrl}
@@ -59,16 +65,14 @@ export default function Home() {
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-3 text-xs text-[var(--muted)]">
-              <span>Built on Botchain Mainnet (Chain 677)</span>
-              <span className="text-white/20">/</span>
               <a
-                href={`${explorerUrl}/address/${botVaultAddress}`}
+                href={botchainWebsiteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-[var(--accent)] hover:underline"
+                className="inline-flex items-center gap-1 font-semibold text-[var(--accent)] hover:underline"
               >
-                <span>Verified Contract</span>
-                <ArrowUpRight size={12} />
+                <span>BOT Chain (botchain.ai)</span>
+                <ExternalLink size={11} />
               </a>
               <span className="text-white/20">/</span>
               <a
@@ -79,6 +83,16 @@ export default function Home() {
               >
                 <span>scan.botchain.ai</span>
                 <ExternalLink size={11} />
+              </a>
+              <span className="text-white/20">/</span>
+              <a
+                href={`${explorerUrl}/address/${botVaultAddress}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 hover:text-white transition"
+              >
+                <span>Verified Contract</span>
+                <ArrowUpRight size={12} />
               </a>
             </div>
           </div>
@@ -115,15 +129,26 @@ export default function Home() {
                 </div>
                 <div className="rounded-xl bg-white/5 p-4">
                   <p className="text-xs text-[var(--muted)]">Network</p>
-                  <a
-                    href={explorerUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-2 flex items-center gap-1 text-sm font-semibold text-[var(--accent)] hover:underline"
-                  >
-                    <span>Botchain 677</span>
-                    <ArrowUpRight size={12} />
-                  </a>
+                  <div className="mt-2 flex flex-col gap-1">
+                    <a
+                      href={botchainWebsiteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm font-semibold text-[var(--accent)] hover:underline"
+                    >
+                      <span>BOT Chain</span>
+                      <ExternalLink size={12} />
+                    </a>
+                    <a
+                      href={explorerUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-xs text-[var(--muted)] hover:text-white transition"
+                    >
+                      <span>scan.botchain.ai</span>
+                      <ArrowUpRight size={11} />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
